@@ -334,7 +334,7 @@ def show_main():
 
     role = st.session_state.role
     ore_dict = {}
-    digital_total = 0
+    hours_total = 0
     col1, col2 = st.columns(2)
 
     # Sliders con -- Select --
@@ -349,6 +349,9 @@ def show_main():
                 key=f"slider_{act}"
             )
             ore_dict[act] = ore
+
+    for act, ore in ore_dict.items():
+        hours_total += ore * activity_factors[role][act] * DAYS
     
     # Parte 2: Email, cloud, printing, connectivity
     st.markdown("""
@@ -364,6 +367,7 @@ def show_main():
 
     email_opts = ["-- Select option --", "1–10", "11–20", "21–30", "31–40", "> 40"]
     cloud_opts = ["-- Select option --", "<5GB", "5–20GB", "20–50GB", "50–100GB"]
+
 
     email_col1, email_col2 = st.columns(2)
 
@@ -398,7 +402,8 @@ def show_main():
     else:
         idle_total = 0
 
-    digital_total += mail_total + wifi_total + print_total + idle_total
+    digital_total = hours_total + mail_total + wifi_total + print_total + idle_total
+
 
 
     # === AI TOOLS ===
@@ -793,5 +798,6 @@ elif st.session_state.page == "main":
     show_main()
 elif st.session_state.page == "results":
     show_results()
+
 
 

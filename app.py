@@ -80,6 +80,7 @@ DAYS = 250  # Typical number of work/study days per year
 
 
 emails = {
+    "-- Select option --": 0,
     "1–10": 5,
     "11–20": 15,
     "21–30": 25,
@@ -87,6 +88,7 @@ emails = {
     "> 40": 50,
 }
 cloud_gb = {
+    "-- Select option --": 0,
     "<5GB": 2.5,
     "5–20GB": 12.5,
     "20–50GB": 35,
@@ -791,4 +793,5 @@ elif st.session_state.page == "main":
     show_main()
 elif st.session_state.page == "results":
     show_results()
+
 
